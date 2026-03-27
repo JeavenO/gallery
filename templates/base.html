@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unsplash Gallery</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="hero-title">Unsplash Gallery</h1>
+    <p class="hero-subtitle">Discover & Search Stunning Photos</p>
+    <!-- Single Search Bar -->
+    <form method="POST" action="/" class="search-bar">
+      <input type="text" name="query" placeholder="Search photos..." required>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <!-- Categories -->
+  <div class="categories">
+    {% for cat in categories %}
+      <a class="category-btn" href="{{ url_for('show_category', name=cat) }}">
+        {{ cat.title() }}
+      </a>
+    {% endfor %}
+  </div>
+
+  <!-- Main -->
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Powered by Unsplash API | Built by Team Awesome</p>
+  </footer>
+</body>
+</html>
