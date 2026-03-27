@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Unsplash Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <!-- Hero -->
+  <!-- Luxury Navbar -->
+  <header class="navbar">
+    <h1 class="logo">Unsplash Gallery</h1>
+  </header>
+
+  <!-- Hero Section -->
   <section class="hero">
-    <h1 class="hero-title">Unsplash Gallery</h1>
-    <p class="hero-subtitle">Discover & Search Stunning Photos</p>
-    <!-- Single Search Bar -->
+    <h2 class="hero-title">Curated Visuals for the Elite</h2>
+    <p class="hero-subtitle">Discover exclusive collections and timeless imagery</p>
     <form method="POST" action="/" class="search-bar">
       <input type="text" name="query" placeholder="Search photos..." required>
       <button type="submit">Search</button>
@@ -18,22 +23,26 @@
   </section>
 
   <!-- Categories -->
-  <div class="categories">
-    {% for cat in categories %}
-      <a class="category-btn" href="{{ url_for('show_category', name=cat) }}">
-        {{ cat.title() }}
-      </a>
-    {% endfor %}
-  </div>
+  <section class="categories">
+    <a class="category-btn" href="/category/nature">🌿 Nature</a>
+    <a class="category-btn" href="/category/technology">💻 Technology</a>
+    <a class="category-btn" href="/category/food">🍴 Food</a>
+    <a class="category-btn" href="/category/travel">✈️ Travel</a>
+    <a class="category-btn" href="/category/people">👤 People</a>
+  </section>
 
-  <!-- Main -->
-  <main class="container">
-    {% block content %}{% endblock %}
-  </main>
+  <!-- Gallery -->
+  <section class="gallery">
+    {% for img in images %}
+      <section class="gallery-item">
+        <img src="{{ img }}" alt="Unsplash image">
+      </section>
+    {% endfor %}
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>Powered by Unsplash API | Built by Jeaven</p>
+    <p>Curated for the Elite | Powered by Jeavenchys Gallery </p>
   </footer>
 </body>
 </html>
